@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# chkconfig: - 99 01
+# description: node server
+. /etc/init.d/functions
+
+USER="root"
+DAEMON="/usr/bin/supervisor"
+ROOT_DIR="/var/www/html/cdn"
+
+SERVER="$ROOT_DIR/app.js"
+LOG_FILE="$ROOT_DIR/app.js.log"
+
+LOCK_FILE="$ROOT_DIR/app.js.lock"
+
+do_start()
+{
+        if [ ! -f "$LOCK_FILE" ] ; then
+                echo -n $"Starting $SERVER: "
+                cd $ROOT_DIR
+                runuser -l "$USER" -c "$DAEMON -q --restart-on-error $SERVER >> $LOG_FILE &" && echo_success || echo_failure
+                RETVAL=$?
+                echo
+                [ $RETVAL -eq 0 ] && touch $LOCK_FILE
+        else
+                echo "$SERVER is locked."
+                RETVAL=1
+        fi
+}
+do_stop()
+{
+        echo -n $"Stopping $SERVER: "
+        pid=`ps -aefw | grep "$SERVER" | grep -v " grep " | awk '{print $2}'`
+        kill -9 $pid > /dev/null 2>&1 && echo_success || echo_failure
+        rm -rf $LOCK_FILE
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ]
+}
+
+case "$1" in
+        start)
+                do_start
+                ;;
+        stop)
+                do_stop
+                ;;
+        restart)
+                do_stop
+                do_start
+                ;;
+        *)
+                echo "Usage: $0 {start|stop|restart}"
+                RETVAL=1
+esac
+exit $RETVAL
