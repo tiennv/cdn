@@ -7,11 +7,11 @@ config.enableDebug = true;
 // config.root_path = 'E:\\Adayroi_2018\\cdn\\persona\\media\\sys_master\\';
 // config.optimize_path = 'E:\\Adayroi_2018\\cdn\\persona\\media\\resize\\';
 
-// config.root_path = '/persona/media/sys_master';
-// config.optimize_path = '/persona/media/resize/';
+config.root_path = '/persona/media/sys_master';
+config.optimize_path = '/persona/media/resize/';
 
-config.root_path = 'D:\\1MG\\cdn\\persona\\media\\sys_master';
-config.optimize_path = 'D:\\1MG\\cdn\\persona\\media\\resize';
+//config.root_path = 'D:\\1MG\\cdn\\persona\\media\\sys_master';
+//config.optimize_path = 'D:\\1MG\\cdn\\persona\\media\\resize';
 
 //config.root_path = '/persona/media/sys_master';
 //config.optimize_path = '/persona/media/resize';
