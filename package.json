@@ -19,6 +19,7 @@
     "moment": "~2.23.0",
     "morgan": "latest",
     "sprintf": "~0.1.5",
-    "walk": "latest"
+    "walk": "latest",
+    "pug": "^2.0.3"
   }
 }

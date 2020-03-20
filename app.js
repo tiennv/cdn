@@ -22,6 +22,11 @@ var app = express();
 
 var server = http.createServer(app);
 
+app.set('view engine', 'pug');
+
+// serve static files from the `public` folder
+app.use(express.static(__dirname + '/'));
+
 app.set('view engine', 'jade');
 
 app.use(bodyParser.json());

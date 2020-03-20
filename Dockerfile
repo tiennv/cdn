@@ -14,8 +14,8 @@ RUN npm install
 COPY . /usr/src/app
 
 # Install and run Bower
-#RUN npm install -g bower
-#RUN bower install
+RUN npm install -g bower
+RUN bower install
 
 EXPOSE 8082
 
